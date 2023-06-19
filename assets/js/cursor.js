@@ -1,89 +1,45 @@
 let script = document.currentScript;
 
 window.addEventListener("DOMContentLoaded", () => {
-  let iDiv = document.createElement('div');
-  iDiv.id = 'cursor';
-  if (script.getAttribute("difference") == "disable") {
-    iDiv.className = 'mscursor-cursor';
-  } else {
-    iDiv.className = 'mscursor-cursor mscursor-difference';
-  }
-  document.getElementsByTagName('body')[0].appendChild(iDiv);
+  let iDiv = document.createElement("div");
+  iDiv.id = "cursor";
+  iDiv.className = "custom-cursor cursor-difference";
 
-  let pauseAnimation = script.getAttribute("pause-animation");
+  document.getElementsByTagName("body")[0].appendChild(iDiv);
 
-  let innerDiv = document.createElement('div');
-
-  if (script.getAttribute("color") !== null) {
-    iDiv.style.backgroundColor = script.getAttribute("color");
-  } else {
-    if (script.getAttribute("difference") == "disable") {
-      iDiv.style.backgroundColor = "black";
-    } else {
-      iDiv.style.backgroundColor = "white";
-    }
-  }
-
-  if (pauseAnimation !== null && pauseAnimation == "disable") {
-    if (script.getAttribute("circle-outline") == "disable") {
-      innerDiv.className = 'mscursor-circle';
-    } else {
-      innerDiv.className = 'mscursor-circle new';
-    }
-  } else {
-    if (script.getAttribute("circle-outline") == "disable") {
-      innerDiv.className = 'mscursor-circle mscursor-border-transform';
-    } else {
-      innerDiv.className = 'mscursor-circle new mscursor-border-transform';
-    }
-  }
+  let innerDiv = document.createElement("div");
+  iDiv.style.backgroundColor = "white";
+  innerDiv.className = "cursor-circle new";
 
   iDiv.appendChild(innerDiv);
 
-  let size = Number(script.getAttribute("size")) || 30;
+  let size = 30;
 
   for (let i = 0; i < size; i++) {
-    let innerDiv = document.createElement('div');
-    if (pauseAnimation !== null && pauseAnimation == "disable") {
-      innerDiv.className = 'mscursor-circle';
-    } else {
-      innerDiv.className = 'mscursor-circle mscursor-border-transform';
-    }
-
-    if (script.getAttribute("color") !== null) {
-      innerDiv.style.backgroundColor = script.getAttribute("color");
-    } else {
-      if (script.getAttribute("difference") == "disable") {
-        innerDiv.style.backgroundColor = "black";
-      } else {
-        innerDiv.style.backgroundColor = "white";
-      }
-    }
+    let innerDiv = document.createElement("div");
+    innerDiv.className = "cursor-circle cursor-border-transform";
+    innerDiv.style.backgroundColor = "white";
     iDiv.appendChild(innerDiv);
   }
 
   const coords = { x: 0, y: 0 };
-  const circles = document.querySelectorAll(".mscursor-circle");
-  const cursor = document.querySelector(".mscursor-cursor");
+  let timeout;
+
+  const circles = document.querySelectorAll(".cursor-circle");
+  const cursor = document.querySelector(".custom-cursor");
 
   circles.forEach(function (circle, index) {
     circle.x = 0;
     circle.y = 0;
-    if (script.getAttribute("gradient") !== null) {
-      let colors = script.getAttribute("gradient").split(",");
-      circle.style.backgroundColor = colors[Math.floor((index * colors.length) / circles.length)];
-
-      document.querySelector("div.new").border = `0.5px solid ${colors[0]}`;
-    }
   });
 
-  const addclass = (e) => {
+  const addClass = (e) => {
     coords.x = e.clientX;
     coords.y = e.clientY;
   };
 
-  window.addEventListener("mousemove", (e) => addclass(e));
-  window.addEventListener("touchmove", (e) => addclass(e.touches[0]));
+  window.addEventListener("mousemove", (e) => addClass(e));
+  window.addEventListener("touchmove", (e) => addClass(e.touches[0]));
 
   function animateCircles() {
     let x = coords.x;
@@ -110,8 +66,4 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   animateCircles();
-
-  if (script.getAttribute("cursor") == "disable") {
-    document.body.classList.add("mscursor-nocursor");
-  }
 });
