@@ -11,7 +11,7 @@
 }
 
 :root {
-    background: url("bg-4.png") center/cover no-repeat;
+    background: url("bg-4.jpg") center/cover no-repeat;
     height: 100vh;
     display: flex;
     justify-content: center;
