@@ -16,13 +16,13 @@
     align-items: center;
 }
 
-.wrapper{
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.content-container {
+.content {
     color: white;
     font-family: 'Poppins', sans-serif;
     text-align: center;
@@ -47,11 +47,10 @@
 .description {
     font-size: 1rem;
     font-weight: 400;
-    color: #ffffff95;
-
+    color: rgba(255, 255, 255, 0.6);
 }
 
-.social-container, .skills-container {
+.social-media, .skills {
     margin-top: 2rem;
 }
 
@@ -63,11 +62,7 @@
     justify-content: center;
 }
 
-.social-list li{
-    margin: 0 5px;
-}
-
-.skill-list li{
+.social-list li, .skill-list li{
     margin: 0 5px;
 }
 
@@ -98,21 +93,17 @@
 
 
 
-.skills-container{
+.skills{
     background-color: rgba(0, 0, 0, 0.25);
-    height: auto;
     padding: 1rem .5rem;
     border-radius: .5em;
-    width: max-content;
     display: flex;
 }
 
 
 .skill-list a {
-    text-decoration: none;
     color: white;
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
-    border-radius: 6px;
 }
 
 .skill-list i{
@@ -127,34 +118,30 @@
 
 
 
-.footer-container{
+.footer{
     font-size: 12px;
     position: fixed;
     bottom: 0;
-    padding-bottom: .5rem;
     width: 100%;
     padding: .5rem;
 }
 
 
-.footer{
+.footer-link{
     display: grid;
     grid-template-columns: 1fr;
     text-align: center;
-
 }
 
-.footer a{
-    color: #ffffff90;
-
-
+.footer-link a{
+    color: rgba(255, 255, 255, 0.6);
 }
 
 
-.redirect{
+.source-code{
     border: none;
 }
 
-.redirect:hover{
+.source-code:hover{
     border-bottom: solid 1px #999;
 }
